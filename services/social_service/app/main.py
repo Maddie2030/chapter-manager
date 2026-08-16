@@ -20,7 +20,8 @@ async def health():
     return {"status": "ok", "service": "social"}
 
 
-from app.routers import social, notifications  # noqa: E402
+from app.routers import comments, social, notifications  # noqa: E402
 
 app.include_router(social.router, prefix="/api/social")
 app.include_router(notifications.router, prefix="/api/notifications")
+app.include_router(comments.router, prefix="/api/social")

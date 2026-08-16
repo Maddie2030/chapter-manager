@@ -65,6 +65,17 @@ export const api = {
   unsubscribe: (seriesId) => request(`/api/social/subscriptions/${seriesId}`, { method: "DELETE" }),
   listSubscriptions: (params = "") => request(`/api/social/subscriptions${params}`),
   subscriptionStatus: (seriesId) => request(`/api/social/subscriptions/${seriesId}/status`),
+  listComments: ({ seriesId, chapterId }) => {
+    const params = new URLSearchParams();
+    if (seriesId) params.set("seriesId", seriesId);
+    if (chapterId) params.set("chapterId", chapterId);
+    return request(`/api/social/comments?${params.toString()}`);
+  },
+  createComment: (body) => request("/api/social/comments", {
+    method: "POST",
+    body: JSON.stringify(body),
+  }),
+  deleteComment: (id) => request(`/api/social/comments/${id}`, { method: "DELETE" }),
 
   // Notifications
   listNotifications: (params = "") => request(`/api/notifications${params}`),

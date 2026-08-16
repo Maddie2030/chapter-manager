@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
 import { api } from "../api/client";
 import { useAuth } from "../hooks/useAuth.jsx";
+import CommentSection from "../components/CommentSection.jsx";
 
 export default function Reader() {
   const { seriesSlug, chapterSlug } = useParams();
@@ -138,6 +139,8 @@ export default function Reader() {
           </button>
         ) : <div />}
       </div>
+
+      <CommentSection seriesId={data.series.id} chapterId={data.chapter.id} />
     </div>
   );
 }

@@ -1,0 +1,42 @@
+FEATURE 12: SINGLE-LEVEL NESTED COMMENTS SYSTEM
+----------------------------------------------------------------------------------
+SOURCE: Inspired by atsu.moe and comix.to[cite: 1]
+DESCRIPTION: High-performance comment section supporting top-level posts and nested 
+replies, backed by MongoDB 7.0.[cite: 1]
+HOW IT WORKS:
+  1. Queries GET /api/v1/social/comments?seriesId= or chapterId=.[cite: 1]
+  2. MongoDB leverages parent_id indexes for fast structural retrieval.[cite: 1]
+  3. Client enforces ownership checks for inline post deletion.[cite: 1]
+FILES TO CREATE: src/components/CommentSection.tsx, src/components/CommentItem.tsx[cite: 1]
+
+PROMPT:
+"Create a nested CommentSection component (src/components/CommentSection.tsx). Fetch 
+discussion threads from /api/v1/social/comments. Support top-level posting, single-level 
+nested replies, author deletion controls, user avatars, and relative time formatting (e.g., '2 hours ago')."[cite: 1]
+
+----------------------------------------------------------------------------------
+
+
+--- SOURCE: EXISTING BOILERPLATE & ENVIRONMENT / FEATURE PLAN ---
+
+
+FEATURE 12: SINGLE-LEVEL NESTED COMMENTS SYSTEM
+Description:
+High-performance comment section supporting top-level posts and nested replies.
+
+Technical Workflow & API Data Pipeline:
+
+Client calls GET /api/v1/social/comments?seriesId={id}.
+
+The Social Service queries MongoDB. MongoDB's indexing on parent_id allows rapid structural retrieval of thread hierarchies.
+
+React flattens and groups the array: Top-level comments (parent_id: null) are rendered first; child comments are attached directly beneath their respective parents.
+
+JWT validation in the API Gateway ensures users can only delete comments matching their own user_id claim.
+
+Files to Create:
+src/components/CommentSection.tsx, src/components/CommentItem.tsx
+
+Prompt for Implementation:
+
+"Create a nested CommentSection component (src/components/CommentSection.tsx). Fetch discussion threads from /api/v1/social/comments. Support top-level posting, single-level nested replies, user avatars, and relative time formatting (e.g., '2 hours ago'). Enforce authentication for posting, and provide author deletion controls."

@@ -14,7 +14,7 @@ from .rate_limit import is_rate_limited
 from .notifications import notify_series_followers
 from .models import (
     Base, User, Genre, Series, SeriesGenre, Chapter, Page,
-    ReadingProgress, ReadingHistory, Bookmark, Subscription, Notification,
+    ReadingProgress, ReadingHistory, Bookmark, Subscription, Notification, Comment,
 )
 
 __all__ = [
@@ -29,4 +29,5 @@ __all__ = [
     "notify_series_followers",
     "Base", "User", "Genre", "Series", "SeriesGenre", "Chapter", "Page",
     "ReadingProgress", "ReadingHistory", "Bookmark", "Subscription", "Notification",
+    "Comment",
 ]
